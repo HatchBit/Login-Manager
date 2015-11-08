@@ -1,0 +1,23 @@
+[commons]
+SITE_NAME = 'Login Manager'
+SITE_URL = 'http://sample.com'
+FROM_EMAIL = 'sample@sample.com'
+NOREPLY_EMAIL = 'sample@sample.com'
+SERVER_DIR = '/var/www/html/sample.com'
+ROOT_DIR = '/var/www/html/sample.com'
+SMARTY_DIR = '/var/www/html/sample.com/assets/Smarty/libs/'
+PAGEMAX = 100
+
+[generals]
+
+
+[database]
+DB_TYPE = 'mysql'
+DB_PREFIX = ''
+DB_SERVER = 'localhost'
+DB_USERNAME = 'username'
+DB_PASSWORD = 'password'
+DB_DATABASE = 'dbname'
+USE_PCONNECT = false
+
+
