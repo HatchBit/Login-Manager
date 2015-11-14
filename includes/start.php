@@ -1,4 +1,19 @@
 <?php
+/**
+ * Login Manager
+ *
+ * Startup Script.
+ *
+ * @package     Login-Manager
+ * @author      Y.Yajima <yajima@hatchbit.jp>
+ * @copyright   2015, HatchBit & Co.
+ * @license     http://www.hatchbit.jp/resource/license.html
+ * @link        http://www.hatchbit.jp
+ * @since       Version 1.0
+ * @filesource
+ */
+
+
 // 単純な実行時エラーを表示する
 // error_reporting(E_ERROR | E_WARNING | E_PARSE);
 // E_NOTICE を表示させるのもおすすめ（初期化されていない
@@ -22,7 +37,7 @@ if(isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] == '120.143.10.128'
 // error_reporting(E_ALL);// と同じ
 // ini_set('error_reporting', E_ALL);
 if(!isset($_SESSION)){
-    session_name("sitecatcher");
+    session_name("login-manager");
     session_start();
 }
 //header("P3P: CP='UNI CUR OUR'");
@@ -36,9 +51,9 @@ mb_internal_encoding('UTF-8');
 //mb_http_input('pass');
 //mb_http_output('UTF-8');
 
-require(dirname(__FILE__) . '/config.php');
-require(dirname(__FILE__) . '/classes/mysql.class.php');
-require(dirname(__FILE__) . '/functions.php');
+require dirname(__FILE__) . '/config.php';
+require dirname(__FILE__) . '/mysql.class.php';
+require dirname(__FILE__) . '/functions.php';
 
 $db = new dbEngine(DB_DSN, DB_DATABASE, DB_SERVER_USERNAME, DB_SERVER_PASSWORD);
 
@@ -48,13 +63,6 @@ $db = new dbEngine(DB_DSN, DB_DATABASE, DB_SERVER_USERNAME, DB_SERVER_PASSWORD);
 //$conf->load();
 
 $youbiArr = array(0=>"日",1=>"月",2=>"火",3=>"水",4=>"木",5=>"金",6=>"土");
-
-require dirname(__FILE__).'/classes/config.class.php';
-//require dirname(__FILE__) . '/classes/config.php';
-$configs = new confEngine($db);
-$__cnf = array();
-$__cnf = $configs->view();
-
 
 // Smarty
 if(defined('SMARTY_DIR')) require SMARTY_DIR.'/Smarty.class.php';

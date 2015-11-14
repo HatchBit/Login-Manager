@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>Login</title>
+<!-- Bootstrap -->
+<link href="../assets/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="container">
+{include file='manager/nav.tpl' pagetitle='管理トップ'}
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>ユーザ名</th>
+                        <th>状態</th>
+                        <th>最終更新</th>
+                        <th>更新</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {foreach $users as $u}
+                    <tr>
+                        <td>{$u.id}</td>
+                        <td>{$u.username}</td>
+                        <td><span class="statuscolor-{$u.status}">{$u.statusstr}</span></td>
+                        <td>{$u.modified}</td>
+                        <td><a href="user-update.php?user_id={$u.id}" class="btn btn-warning">更新</a></td>
+                    </tr>
+                    {/foreach}
+                </tbody>
+            </table>
+        </div>
+        {if count($pages) gt 0}
+        <div class="col-sm-12">
+            <nav>
+                <ul class="pagination">
+                    {foreach $pages as $p}
+                    {if $p.type eq 'prev'}
+                    <li><a href="top.php?p={$p.pagenum}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                    {elseif $p.type eq 'next'}
+                    <li><a href="top.php?p={$p.pagenum}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                    {elseif $p.type eq 'current'}
+                    <li class="active"><a href="top.php?p={$p.pagenum}">{$p.pagenum}</a></li>
+                    {else}
+                    <li><a href="top.php?p={$p.pagenum}">{$p.pagenum}</a></li>
+                    {/if}
+                    {/foreach}
+                </ul>
+            </nav>
+        </div>
+        {/if}
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../assets/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+</body>
+</html>
