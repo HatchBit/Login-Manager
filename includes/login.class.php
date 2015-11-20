@@ -88,7 +88,7 @@ class loginEngine {
         
         $sql = "SELECT `id`,`username`,`status`,`token`,`modified` 
         FROM $tableName 
-        WHERE `username` = :username AND `password` = :password AND `status` = 1 
+        WHERE `username` = :username AND `password` = :password AND `status` IN (1,9) 
         LIMIT 0,1";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':username', $username,PDO::PARAM_STR,64);

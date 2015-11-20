@@ -75,6 +75,13 @@ if(isset($_POST['mode']) && $_POST['mode'] == 'update'){
     $msg[] = array('value'=>'更新しました', 'style'=>'success');
 }
 
+// 更新処理
+if(isset($_POST['mode']) && $_POST['mode'] == 'delete'){
+    $login_id = intval($_POST['user_id']);
+    $login->delete($login_id);
+    $msg[] = array('value'=>'削除しました', 'style'=>'danger');
+}
+
 $assets['msg'] = $msg;
 
 /*====================

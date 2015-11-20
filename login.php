@@ -63,9 +63,12 @@ if(isset($_POST['mode'])){
         $assets['result'] = $loginValue;
         
         if($loginValue == 'ok'){
+            $_SESSION['login'] = 'ok';
             if(!empty($_POST['return_uri'])){
-                $_SESSION['login'] = 'ok';
                 header('Location: '.$_POST['return_uri']);
+                exit;
+            }else{
+                header('Location: top.php');
                 exit;
             }
         }else{
