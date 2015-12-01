@@ -2,7 +2,7 @@
 /**
  * Login Manager
  *
- * Login page.
+ * Manager Login page.
  *
  * @package     Login-Manager
  * @author      Y.Yajima <yajima@hatchbit.jp>
@@ -66,8 +66,9 @@ if(isset($_POST['mode'])){
         $loginValue = $login->managerlogin($_username, $_hashedPassword);
         $assets['result'] = $loginValue;
         
-        if($loginValue == 'ok'){
+        if($loginValue > 0){
             $_SESSION['login'] = 'ok';
+            $_SESSION['managerlogin'] = 1;
             header('Location: top.php');
             exit;
         }else{

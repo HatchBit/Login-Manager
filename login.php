@@ -62,8 +62,14 @@ if(isset($_POST['mode'])){
         $loginValue = $login->login($_username, $_hashedPassword);
         $assets['result'] = $loginValue;
         
-        if($loginValue == 'ok'){
+        if($loginValue > 0){
             $_SESSION['login'] = 'ok';
+            if($loginValue == 9){
+                $_SESSION['managerlogin'] = 1;
+            }else{
+                $_SESSION['managerlogin'] = 0;
+            }
+            
             if(!empty($_POST['return_uri'])){
                 header('Location: '.$_POST['return_uri']);
                 exit;

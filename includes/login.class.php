@@ -106,7 +106,7 @@ class loginEngine {
             
             // セッションにトークンを登録。
             $_SESSION['token'] = $token;
-            $result = 'ok';
+            $result = $r['status'];
         }
         unset($r);
         return $result;
@@ -136,7 +136,7 @@ class loginEngine {
             
             // セッションにトークンを登録。
             $_SESSION['token'] = $token;
-            $result = 'ok';
+            $result = $r['status'];;
         }
         unset($r);
         return $result;
